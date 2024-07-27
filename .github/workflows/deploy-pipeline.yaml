@@ -1,0 +1,20 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - feature/*
+
+name: environment setting test
+jobs:
+  prod-pipeline:
+    environment: Prod
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ vars.ENV_MSG }}" >> $GITHUB_STEP_SUMMARY
+  dev-pipeline:
+    environment: Dev
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ vars.ENV_MSG }}" >> $GITHUB_STEP_SUMMARY
